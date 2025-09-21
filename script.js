@@ -19,7 +19,7 @@ function secondsToMinutesSeconds(seconds) {
 
 async function getsongs(folder) {
     currfolder = folder;
-    let a = await fetch(`http://192.168.1.99:3000/${folder}`)
+    let a = await fetch(`/${folder}`)
     let response = await a.text();
 
     let div = document.createElement("div")
@@ -73,7 +73,7 @@ const playmusic = (track, pause = false) => {
 async function displayalbums() {
     try {
         console.log("Starting displayalbums...");
-        let a = await fetch(`http://192.168.1.99:3000/songs/`)
+        let a = await fetch(`/songs/`)
         let response = await a.text();
         console.log("Raw response:", response);
         
@@ -118,7 +118,7 @@ async function displayalbums() {
                 console.log("Processing potential folder:", folder);
                 
                 try {
-                    let infoResponse = await fetch(`http://192.168.1.99:3000/songs/${folder}/info.json`)
+                    let infoResponse = await fetch(`/songs/${folder}/info.json`)
                     console.log(`Fetching info.json for ${folder}, status:`, infoResponse.status);
                     
                     let info;
