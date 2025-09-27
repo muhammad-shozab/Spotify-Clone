@@ -1,0 +1,113 @@
+{
+  "albums": [
+    {
+      "folder": "Anuv Jain Mix",
+      "title": "Anuv Jain Mix",
+      "description": "By Spotify",
+      "songs": [
+        "Anuv Jain - AFSOS .mp3",
+        "Anuv Jain - ALAG AASMAAN .mp3",
+        "Anuv Jain - HUSN.mp3"
+      ]
+    },
+    {
+      "folder": "Aur",
+      "title": "Aur",
+      "description": "Aur Mix",
+      "songs": [
+        "AUR - SHIKAYAT.mp3",
+        "LONG TIME NO SEE - Aur.mp3",
+        "Tu Hai Kahan - AUR.mp3"
+      ]
+    },
+    {
+      "folder": "Bollywood Romantic",
+      "title": "Bollywood Romance",
+      "description": "Best of Bollywood Romantic Songs",
+      "songs": [
+        "Duniyaa - Akhli .mp3",
+        "Humdard - Mithoon.mp3",
+        "Pehli Dafa - Atif Aslam.mp3",
+        "Tera Hone Laga Hoon - Pritam.mp3"
+      ]
+    },
+    {
+      "folder": "Emran Hashmi Mashup",
+      "title": "Emran Hashmi Mashup",
+      "description": "Best of Emran Hashmi Songs",
+      "songs": [
+        "Hale Dil - Harshit Saxena.mp3",
+        "Hamari Adhuri Kahani - Jeet Gannguli.mp3",
+        "Maahi - SabriMohit Suri.mp3",
+        "Tu Hi Haqeeqat - Javed Ali.mp3",
+        "Zara Sa - KK,  Pritami.mp3"
+      ]
+    },
+    {
+      "folder": "Hassan Raheem Mix",
+      "title": "Hassan Raheem Mix",
+      "description": "From Spotify",
+      "songs": [
+        "JOONA - Hasan Raheem.mp3",
+        "MEMORIES - Hasan Raheem.mp3",
+        "OBVIOUS - Hasan Raheem.mp3",
+        "Wishes - Hasan Raheem.mp3"
+      ]
+    },
+    {
+      "folder": "Hollywood",
+      "title": "Hollywood",
+      "description": "Hollywood Hits",
+      "songs": [
+        "Mockingbird - Eminem.mp3",
+        "Night Changes - One Direction.mp3",
+        "Taylor Swift - Blank Space.mp3",
+        "WILDFLOWER - Billie Eilish .mp3"
+      ]
+    },
+    {
+      "folder": "Karan Aujila",
+      "title": "Karan Aujila Mix",
+      "description": "By Spotify",
+      "songs": [
+        "For A Reason - Karan Aujila.mp3",
+        "SOFTLY - Karan Aujila.mp3",
+        "WAVY - Karan Aujila.mp3"
+      ]
+    },
+    {
+      "folder": "Party Songs",
+      "title": "Party Songs",
+      "description": "Popular Party Songs",
+      "songs": [
+        "Party On My Mind  - KK.mp3",
+        "Sooraj Dooba Hain - Arijit.mp3",
+        "Subha Hone Na De - Mika Singh.mp3",
+        "Tumhi Ho Bandhu - Diana.mp3"
+      ]
+    },
+    {
+      "folder": "Popular Hits",
+      "title": "Popular Hits",
+      "description": "Popular Songs",
+      "songs": [
+        "Baithe Baithe - Dikshant  Irshad .mp3",
+        "Kaavish - Tere Pyaar Main.mp3",
+        "Nindiya Ke Paar - Uzair Jaswal.mp3",
+        "Tere Liye - Atif Aslam, Shreya .mp3"
+      ]
+    },
+    {
+      "folder": "Sad Songs",
+      "title": "Qawali Hits",
+      "description": "Nusrat Fateh Ali Khan",
+      "songs": [
+        "Kali Kali Zulfon - Remix.mp3",
+        "RashkeQamar - Nusrat.mp3",
+        "Sochta Hun - Nusrat.mp3",
+        "Tumhen Dillagi - Nusrat.mp3",
+        "Unke Andaaz e Karam - Nusrat.mp3"
+      ]
+    }
+  ]
+}
