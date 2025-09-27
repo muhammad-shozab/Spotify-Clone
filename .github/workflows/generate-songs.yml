@@ -10,9 +10,14 @@ jobs:
   generate-songs:
     runs-on: ubuntu-latest
     
+    permissions:
+      contents: write   # ✅ allow pushing commits
+
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}   # ✅ use GitHub token with write access
       
     - name: Setup Node.js
       uses: actions/setup-node@v3
@@ -68,6 +73,6 @@ jobs:
     - name: Commit and push if changed
       run: |
         git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
+        git config --local user.name "github-actions[bot]"
         git add songs-list.json
         git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update songs list" && git push)
