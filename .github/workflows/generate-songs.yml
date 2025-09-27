@@ -1,0 +1,73 @@
+name: Generate Songs List
+
+on:
+  push:
+    paths:
+      - 'songs/**'
+  workflow_dispatch:
+
+jobs:
+  generate-songs:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        
+    - name: Generate songs list
+      run: |
+        node -e "
+        const fs = require('fs');
+        const path = require('path');
+        
+        const songsDir = 'songs';
+        const albumsData = [];
+        
+        if (fs.existsSync(songsDir)) {
+          const folders = fs.readdirSync(songsDir, { withFileTypes: true })
+            .filter(dirent => dirent.isDirectory())
+            .map(dirent => dirent.name);
+        
+          for (const folder of folders) {
+            const folderPath = path.join(songsDir, folder);
+            const files = fs.readdirSync(folderPath);
+            const mp3Files = files.filter(file => file.toLowerCase().endsWith('.mp3'));
+            
+            let info = {
+              title: folder,
+              description: folder + ' collection'
+            };
+            
+            const infoPath = path.join(folderPath, 'info.json');
+            if (fs.existsSync(infoPath)) {
+              try {
+                info = JSON.parse(fs.readFileSync(infoPath, 'utf8'));
+              } catch (e) {
+                console.warn('Could not read info.json for', folder);
+              }
+            }
+            
+            albumsData.push({
+              folder: folder,
+              title: info.title,
+              description: info.description,
+              songs: mp3Files
+            });
+          }
+        }
+        
+        fs.writeFileSync('songs-list.json', JSON.stringify({ albums: albumsData }, null, 2));
+        console.log('Generated songs-list.json with', albumsData.length, 'albums');
+        "
+        
+    - name: Commit and push if changed
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add songs-list.json
+        git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update songs list" && git push)
