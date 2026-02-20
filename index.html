@@ -14,44 +14,53 @@
 
 <div class="app">
 
-  <!-- ═══ SIDEBAR ═══ -->
+  <!-- ═══════════════ SIDEBAR ═══════════════ -->
   <aside class="sidebar" id="sidebar">
+
     <div class="sidebar-header">
       <div class="logo">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
         <span>Spotify</span>
       </div>
-      <button class="close-sidebar" id="closeSidebar" aria-label="Close">
+      <button class="close-sidebar" id="closeSidebar" aria-label="Close menu">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
       </button>
     </div>
 
-    <!-- Sidebar Nav -->
+    <!-- Nav: Home + Search-morph -->
     <nav class="sidebar-nav">
+
       <a href="#" class="nav-item active" id="navHome">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
         <span>Home</span>
       </a>
 
-      <!-- Search nav item — expands into search bar -->
-      <div class="nav-search-wrap">
-        <button class="nav-item nav-search-toggle" id="navSearchToggle" aria-expanded="false">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <!--
+        Search item: two layers stacked in the same space.
+        .nav-search-btn  → visible when closed
+        .nav-search-field → visible when open (morphs in place)
+      -->
+      <div class="nav-search-item" id="navSearchItem">
+
+        <!-- Layer A: the "Search" nav button -->
+        <button class="nav-item nav-search-btn" id="navSearchBtn">
+          <svg class="search-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
           <span>Search</span>
         </button>
-        <!-- Collapsible search bar -->
-        <div class="sidebar-search-bar" id="sidebarSearchBar" aria-hidden="true">
-          <div class="ssb-inner">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-            <input type="text" id="sidebarSearchInput" placeholder="What do you want to play?" autocomplete="off" />
-            <button class="ssb-clear" id="ssbClear" aria-label="Clear">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-            </button>
-          </div>
-          <!-- Sidebar search results -->
-          <ul class="ssb-results" id="ssbResults"></ul>
+
+        <!-- Layer B: the search input field (replaces the button) -->
+        <div class="nav-search-field" id="navSearchField">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input type="text" id="sidebarSearchInput" placeholder="Songs, artists, albums…" autocomplete="off" spellcheck="false" />
+          <button class="nsf-close" id="nsfClose" aria-label="Close search">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
         </div>
+
+        <!-- Search results dropdown -->
+        <ul class="sidebar-results" id="sidebarResults"></ul>
       </div>
+
     </nav>
 
     <!-- Library -->
@@ -71,11 +80,12 @@
       <a href="https://www.spotify.com/legal/cookies-policy/">Cookies</a>
       <a href="https://www.spotify.com/accessibility/">Accessibility</a>
     </footer>
+
   </aside>
 
-  <!-- ═══ MAIN CONTENT ═══ -->
+  <!-- ═══════════════ MAIN ═══════════════ -->
   <main class="main-content">
-    <!-- Top Nav -->
+
     <header class="top-nav">
       <div class="nav-left">
         <button class="hamburger-btn" id="hamburgerBtn" aria-label="Open menu">
@@ -91,7 +101,7 @@
         </div>
         <div class="search-bar">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-          <input type="text" id="searchInput" placeholder="Search songs, artists..." />
+          <input type="text" id="searchInput" placeholder="Search songs, artists…" />
           <button class="search-clear" id="searchClear">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
           </button>
@@ -103,13 +113,11 @@
       </div>
     </header>
 
-    <!-- Greeting -->
     <section class="greeting-section">
       <h1 class="greeting-text" id="greetingText">Good Evening</h1>
       <div class="quick-play-grid" id="quickPlayGrid"></div>
     </section>
 
-    <!-- Albums -->
     <section class="albums-section">
       <div class="section-header">
         <h2>Your Playlists</h2>
@@ -118,24 +126,30 @@
       <div class="card-grid" id="cardGrid"></div>
     </section>
 
-    <!-- Search Results -->
     <section class="search-results" id="searchResults">
       <h2>Search Results</h2>
       <ul class="search-result-list" id="searchResultList"></ul>
     </section>
+
   </main>
 </div>
 
-<!-- ═══ PLAYER BAR ═══ -->
+<!-- ═══════════════ PLAYER BAR ═══════════════
+     Desktop  : 3 columns [info | controls | volume]
+     ≤ 540px  : 3 rows
+       Row 1  : thumb + song meta + like
+       Row 2  : shuffle | prev | play | next | repeat
+       Row 3  : vol-icon | volume-bar | time | seek | time
+-->
 <div class="player-bar" id="playerBar">
 
-  <!-- LEFT: Song info -->
-  <div class="player-info">
+  <!-- ROW 1 (all sizes) — song info -->
+  <div class="prow prow-info">
     <div class="player-thumb" id="playerThumb">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
     </div>
     <div class="player-meta">
-      <span class="player-song-name" id="playerSongName">No song selected</span>
+      <span class="player-song-name" id="playerSongName">No song playing</span>
       <span class="player-album-name" id="playerAlbumName">—</span>
     </div>
     <button class="like-btn" id="likeBtn" title="Like">
@@ -143,9 +157,9 @@
     </button>
   </div>
 
-  <!-- CENTER: Controls + progress -->
-  <div class="player-controls">
-    <div class="control-buttons">
+  <!-- ROW 2 (center on desktop, row-2 on mobile) — transport + seek -->
+  <div class="prow prow-controls">
+    <div class="ctrl-btns">
       <button class="ctrl-btn shuffle-btn" id="shuffleBtn" title="Shuffle">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/></svg>
       </button>
@@ -163,7 +177,7 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
       </button>
     </div>
-    <div class="progress-container">
+    <div class="seek-row">
       <span class="time-label" id="currentTime">0:00</span>
       <div class="progress-bar" id="progressBar">
         <div class="progress-fill" id="progressFill"></div>
@@ -173,16 +187,16 @@
     </div>
   </div>
 
-  <!-- RIGHT: Volume + queue -->
-  <div class="player-volume">
+  <!-- ROW 3 (right on desktop, row-3 on mobile) — volume + queue -->
+  <div class="prow prow-volume">
     <button class="ctrl-btn queue-btn" id="queueBtn" title="Queue">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
     </button>
-    <button class="ctrl-btn mute-btn" id="muteBtn">
+    <button class="ctrl-btn vol-btn" id="muteBtn">
       <svg class="vol-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
       <svg class="mute-icon" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
     </button>
-    <div class="volume-slider-wrap">
+    <div class="volume-track-wrap">
       <div class="volume-bar" id="volumeBar">
         <div class="volume-fill" id="volumeFill"></div>
         <div class="volume-thumb" id="volumeThumb"></div>
@@ -190,29 +204,9 @@
     </div>
   </div>
 
-  <!-- MOBILE EXTRAS ROW: shuffle + volume + repeat (shown only on small screens) -->
-  <div class="player-mobile-extras">
-    <button class="ctrl-btn shuffle-btn-m" id="shuffleBtnM" title="Shuffle">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/></svg>
-    </button>
-    <div class="mobile-volume">
-      <button class="ctrl-btn mute-btn-m" id="muteBtnM">
-        <svg class="vol-icon-m" viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
-        <svg class="mute-icon-m" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
-      </button>
-      <div class="mobile-vol-bar" id="mobileVolBar">
-        <div class="mobile-vol-fill" id="mobileVolFill"></div>
-        <div class="mobile-vol-thumb" id="mobileVolThumb"></div>
-      </div>
-    </div>
-    <button class="ctrl-btn repeat-btn-m" id="repeatBtnM" title="Repeat">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
-    </button>
-  </div>
-
 </div>
 
-<!-- Queue Panel -->
+<!-- Queue panel -->
 <div class="queue-panel" id="queuePanel">
   <div class="queue-header">
     <h3>Up Next</h3>
@@ -223,7 +217,6 @@
   <ul class="queue-list" id="queueList"></ul>
 </div>
 
-<!-- Toast -->
 <div class="toast" id="toast"></div>
 
 <script src="script.js"></script>
