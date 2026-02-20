@@ -290,4 +290,5 @@ All music you add to this player must be content you own or have rights to use.
 
 ---
 
-<p align="center">Made with ❤️ and pure vanilla web tech</p>
+<p align="center">Made with ❤️ and dedication</p>
+
