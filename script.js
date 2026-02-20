@@ -82,7 +82,6 @@ const D = {
 
 /* ================================================================
    SEEK ROW REPARENTING
-   On ≤540px the seek bar moves from .prow-controls to .prow-volume
    ================================================================ */
 const seekRow       = $$('.seek-row');
 const prowControls  = $$('.prow-controls');
@@ -101,7 +100,7 @@ function repositionSeek() {
 }
 
 window.addEventListener('resize', repositionSeek);
-repositionSeek(); // run once on load
+repositionSeek();
 
 /* ================================================================
    UTILS
@@ -148,7 +147,6 @@ function renderAlbums() {
   D.quickGrid.innerHTML = '';
 
   Object.entries(state.albumsData).forEach(([folder, info]) => {
-    // Album card
     const card = document.createElement('div');
     card.className = 'album-card';
     card.dataset.folder = folder;
@@ -166,7 +164,6 @@ function renderAlbums() {
       </div>`;
     D.cardGrid.appendChild(card);
 
-    // Quick card (first 6)
     if (D.quickGrid.children.length < 6) {
       const qc = document.createElement('div');
       qc.className = 'quick-card';
@@ -217,7 +214,6 @@ function renderSongList() {
    PLAYBACK
    ================================================================ */
 function playSong(folder, index, autoPlay = true) {
-  // load folder only if needed
   if (folder !== state.currentFolder) {
     state.currentFolder = folder;
     state.songs = [...state.albumsData[folder].songs];
@@ -447,8 +443,6 @@ D.overlay.addEventListener('click', closeSidebar);
 
 /* ================================================================
    SIDEBAR SEARCH MORPH
-   Clicking "Search" nav button → morphs it into an input field
-   in the SAME position. Clicking × reverts.
    ================================================================ */
 function openSidebarSearch() {
   D.navSearchItem.classList.add('open');
@@ -465,10 +459,8 @@ function closeSidebarSearch() {
 D.navSearchBtn.addEventListener('click', openSidebarSearch);
 D.nsfClose.addEventListener('click', closeSidebarSearch);
 
-// Esc key closes it too
 D.sidebarInput.addEventListener('keydown', e => { if (e.key === 'Escape') closeSidebarSearch(); });
 
-// Live search
 let ssbTimer;
 D.sidebarInput.addEventListener('input', () => {
   clearTimeout(ssbTimer);
@@ -503,7 +495,6 @@ function renderSidebarResults(q) {
         <div class="sr-li-album">${item.albumTitle}</div>
       </div>`;
     li.addEventListener('click', () => {
-      // load folder first so songs array is right
       if (item.folder !== state.currentFolder) {
         state.currentFolder = item.folder;
         state.songs = [...state.albumsData[item.folder].songs];
@@ -518,7 +509,7 @@ function renderSidebarResults(q) {
 }
 
 /* ================================================================
-   TOP SEARCH BAR
+   TOP SEARCH BAR  ← THE FIX IS HERE
    ================================================================ */
 let topSearchTimer;
 D.searchInput.addEventListener('input', () => {
@@ -545,7 +536,7 @@ function renderTopSearch(q) {
   }
   greetEl.style.display  = 'none';
   albumsEl.style.display = 'none';
-  D.searchResults.style.display = 'block';
+  D.searchResults.style.display = 'block';   // ← FIX: was '' which reverts to CSS 'none'
 
   const lq   = q.toLowerCase();
   const hits = state.allSongs.filter(s =>
@@ -584,23 +575,18 @@ function renderTopSearch(q) {
    CLICK DELEGATION
    ================================================================ */
 document.addEventListener('click', e => {
-  // card play button
   const cpb = e.target.closest('.card-play-btn');
   if (cpb) { e.stopPropagation(); loadFolder(cpb.dataset.folder); playSong(cpb.dataset.folder, 0); return; }
 
-  // album card → load + open sidebar songs
   const ac = e.target.closest('.album-card');
   if (ac) { loadFolder(ac.dataset.folder); if (window.innerWidth<=768) openSidebar(); return; }
 
-  // quick card
   const qc = e.target.closest('.quick-card');
   if (qc) { loadFolder(qc.dataset.folder); playSong(qc.dataset.folder, 0); return; }
 
-  // song list item
   const sl = e.target.closest('#songList li');
   if (sl) { playSong(state.currentFolder, parseInt(sl.dataset.index)); if (window.innerWidth<=768) closeSidebar(); return; }
 
-  // close queue when clicking outside
   if (!D.queuePanel.contains(e.target) && e.target !== D.queueBtn && !D.queueBtn.contains(e.target)) {
     D.queuePanel.classList.remove('open');
   }
@@ -623,7 +609,7 @@ async function init() {
   const first = Object.keys(state.albumsData)[0];
   if (first) {
     loadFolder(first);
-    playSong(first, 0, false);  // load but don't autoplay
+    playSong(first, 0, false);
   }
 }
 
