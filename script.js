@@ -545,7 +545,7 @@ function renderTopSearch(q) {
   }
   greetEl.style.display  = 'none';
   albumsEl.style.display = 'none';
-  D.searchResults.style.display = '';
+  D.searchResults.style.display = 'block';
 
   const lq   = q.toLowerCase();
   const hits = state.allSongs.filter(s =>
