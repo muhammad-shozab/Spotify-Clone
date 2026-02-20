@@ -589,7 +589,7 @@ input{font-family:var(--font)}
   /* Player stays 3-col */
   .player-bar{padding:0 12px;gap:8px}
   .player-thumb{width:48px;height:48px}
-  .prow-info{max-width:160px}
+  .prow-info{max-width:100%}
   .volume-track-wrap{width:80px}
 
   .queue-panel{width:calc(100vw - 40px);right:16px}
