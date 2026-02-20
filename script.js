@@ -129,8 +129,10 @@ function renderAlbums() {
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
         </button>
       </div>
-      <div class="card-title">${info.title}</div>
-      <div class="card-desc">${info.description}</div>
+      <div class="card-body">
+        <div class="card-title">${info.title}</div>
+        <div class="card-desc">${info.description}</div>
+      </div>
     `;
     dom.cardGrid.appendChild(card);
 
@@ -307,7 +309,6 @@ function setProgress(clientX) {
 function updateProgress(pct) {
   dom.progressFill.style.width = `${pct * 100}%`;
   dom.progressThumb.style.left = `${pct * 100}%`;
-  dom.progressThumb.style.right = 'auto';
 }
 
 audio.addEventListener('timeupdate', () => {
@@ -356,7 +357,6 @@ function setVolume(clientX) {
 function updateVolumeUI(pct) {
   dom.volumeFill.style.width = `${pct * 100}%`;
   dom.volumeThumb.style.left = `${pct * 100}%`;
-  dom.volumeThumb.style.right = 'auto';
   const volIcon = dom.muteBtn.querySelector('.vol-icon');
   const muteIcon = dom.muteBtn.querySelector('.mute-icon');
   if (pct === 0) { volIcon.style.display = 'none'; muteIcon.style.display = ''; }
